@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": [ "ES2019", "DOM"],
+    "moduleResolution": "node",
+    "target": "ES2019",
+    "types": ["cypress"],
+    "allowJs": true
+  },
+  "include": ["../node_modules/cypress/types", "**/*.ts", "**/*.js"],
+}
