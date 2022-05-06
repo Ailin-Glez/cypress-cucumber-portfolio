@@ -14,12 +14,13 @@
   "author": "Ailin Glez",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.3.5",
-    "cypress": "^8.3.0",
-    "@4tw/cypress-drag-drop": "^1.6.0",
-    "cypress-cucumber-preprocessor": "^4.2.0",
+    "@4tw/cypress-drag-drop": "^2.1.0",
     "@types/cypress-cucumber-preprocessor": "^4.0.1",
-    "@types/node": "^16.7.1"
+    "@types/node": "^16.7.1",
+    "cypress": "^9.6.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-file-upload": "^5.0.8",
+    "typescript": "^4.3.5"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,

@@ -1,3 +1,4 @@
+import { fileBoardIds } from '../fixtures/constants';
 import { listName, taskName } from '../fixtures/data';
 import { CreationData } from '../fixtures/models/all-models';
 
@@ -29,6 +30,10 @@ function create(type: CreationType, data: CreationData): Cypress.Chainable<numbe
 export function setupBoard(boardName: string, lists = 1, withTasks = false) {
     create(CreationType.board, { boardName }).then((boardId) => {
         const array = [...taskName];
+        cy.readFile(fileBoardIds).then((list) => {
+            list.push(boardId);
+            cy.writeFile(fileBoardIds, list);
+        });
         cy.wrap(boardId).as('boardId');
         for (let i = 0; i < lists; i++) {
             create(CreationType.list, { listName: listName[i], boardId }).then((listId) => {
