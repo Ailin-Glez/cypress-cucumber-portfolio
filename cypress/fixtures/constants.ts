@@ -1,0 +1,1 @@
+export const fileBoardIds = 'cypress/fixtures/boardIds.json';
