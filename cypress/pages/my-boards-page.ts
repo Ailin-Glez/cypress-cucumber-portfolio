@@ -1,3 +1,4 @@
+import { fileBoardIds } from '../fixtures/constants';
 import { onSelectedBoardPage } from './selected-board-page';
 
 const locators = {
@@ -5,6 +6,15 @@ const locators = {
     boardTitle: 'board_title',
     saveBtn: 'new-board-create',
     boardItems: 'board-item'
+}
+
+function saveBoardIdToFile() {
+    cy.wait('@boardCreation').then((rq) => {
+        cy.readFile(fileBoardIds).then((list) => {
+            list.push(rq.response.body.id);
+            cy.writeFile(fileBoardIds, list);
+        });
+    });
 }
 
 class MyBoardsPage {
@@ -15,10 +25,12 @@ class MyBoardsPage {
 
     clickSaveBtn() {
         cy.getElem(locators.saveBtn).click();
+        saveBoardIdToFile();
     }
 
     createBoard(name: string) {
         cy.getElem(locators.createBoardInput).type(`${name}{enter}`);
+        saveBoardIdToFile();
         return onSelectedBoardPage;
     }
 
