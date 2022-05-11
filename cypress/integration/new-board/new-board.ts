@@ -1,13 +1,15 @@
 import { And, Given, Then, When } from 'cypress-cucumber-preprocessor/steps';
+import { fileBoardIds } from '../../fixtures/constants';
 import { onMyBoardsPage } from '../../pages/my-boards-page';
 import { onSelectedBoardPage } from '../../pages/selected-board-page';
 
 Given('I have no boards', () => {
-    // exposing app to our window context in order to call the function 'resetBoards'
-    cy.window().then(({ app }) => {
-        app.resetBoards();
+    cy.readFile(fileBoardIds).then((listIds) => {
+        cy.deleteAllBoards(listIds);
+        cy.writeFile(fileBoardIds, []);
     });
     cy.visit('/');
+    cy.intercept('POST', '**/boards').as('boardCreation');
 });
 
 When('I enter {string} as board name', (boardName: string) => {

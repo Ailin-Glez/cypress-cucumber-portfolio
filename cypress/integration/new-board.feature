@@ -1,6 +1,7 @@
 Feature: Creating a new board
 
     Verify that the user can create boards
+
     Scenario: Check the creation of a new board
         Given I have no boards
         When I enter "First Board" as board name
