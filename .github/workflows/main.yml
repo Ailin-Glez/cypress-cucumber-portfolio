@@ -1,4 +1,4 @@
-name: Cypress Cucumber Tests
+name: Cypress Trello App Tests
 
 on: [push]
 
