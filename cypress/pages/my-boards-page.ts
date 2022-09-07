@@ -21,11 +21,13 @@ class MyBoardsPage {
 
     enterBoardName(name: string) {
         cy.getElem(locators.createBoardInput).type(name);
+        return this;
     }
 
     clickSaveBtn() {
         cy.getElem(locators.saveBtn).click();
         saveBoardIdToFile();
+        return this;
     }
 
     createBoard(name: string) {
@@ -36,10 +38,12 @@ class MyBoardsPage {
 
     checkBoardsDisplayed(expectedBoards: number) {
         cy.getElem(locators.boardItems).should('have.length', expectedBoards);
+        return this;
     }
 
     checkNewBoardOption() {
         cy.getElem(locators.createBoardInput).should('be.visible').find('h1').should('have.text', 'Create a board...');
+        return this;
     }
 
 }
