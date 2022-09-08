@@ -6,10 +6,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Start app
-        working-directory: ./app
-        run: npm install, npm start
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
+          working-directory: ./app
+          start: npm start
           wait-on: 'http://localhost:3000'
