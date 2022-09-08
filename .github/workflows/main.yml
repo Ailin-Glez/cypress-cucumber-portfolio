@@ -1,18 +1,12 @@
-name: Cypress Trello Tests
+name: Cypress Trello App tests
 on: [push]
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@master
-      - name: Install dependencies
-        uses: cypress-io/github-action@v1
-        with:
-          working-directory: ./app
-          runTests: false
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run e2e Tests
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
         uses: cypress-io/github-action@v4
-        with:
-          wait-on: 'http://localhost:3000'
