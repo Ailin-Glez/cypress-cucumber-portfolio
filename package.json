@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Personal Portfolio",
   "scripts": {
-    "start": "cd app && npm start",
-    "postinstall": "cd app && npm install"
+    "e2e": "npx cypress open --e2e",
+    "e2e-headless": "npx cypress run --e2e",
   },
   "keywords": [
     "cypress",
