@@ -1,12 +1,18 @@
-name: End-to-end tests
+name: E2E
 on: push
 jobs:
-  cypress-run:
+  test:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
+      - uses: actions/checkout@master
+      - name: Install root dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Start server in the background
+        run: npm start &
+
+      # Cypress has its own package.json in folder "e2e"
+      - name: Install Cypress and run tests
         uses: cypress-io/github-action@v5
+        with:
+          working-directory: e2e
